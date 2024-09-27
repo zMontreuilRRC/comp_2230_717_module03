@@ -129,3 +129,48 @@ function validateAge(age) {
     }
     return true;
 }
+
+// JS has a Document Object Model that represents our HTML elements
+// each HTML element has a corresponding DOM Node
+// We can select DOM Nodes via their ID or class
+// We can also access nodes via their parents or their children
+
+// ==== BASIC MANIPULATION ====
+// select header
+const welcomeHeadingNode = document.querySelector("#welcome-heading");
+
+// change contents
+// modifying an element "re-renders" the element
+welcomeHeadingNode.textContent = "Welcome, Person!";
+
+// add the highlight class to the header
+welcomeHeadingNode.className = "highlight";
+
+// add an event listener for clicking on the heading that removes the highlight
+// invoke an anonymous inline function
+// "event" argument is passed automatically to the callback
+welcomeHeadingNode.addEventListener("click", (event) => {
+    event.target.classList.toggle("highlight");
+});
+
+// ==== CREATING ELEMENTS ====
+const newParagraphNode = document.createElement("p");
+const helloSpanNode = document.createElement("span");
+
+// textContent is NOT parsed as HTML when inserted (it can't add new elements)
+newParagraphNode.textContent = "This paragraph was newly created in JS";
+helloSpanNode.textContent = "Hello! ";
+
+// Append adds to the END of an element
+document.body.appendChild(newParagraphNode);
+// prepend adds to the BEGINNING of an element body
+newParagraphNode.prepend(helloSpanNode);
+
+// === MULTIPLE ELEMENTS ===
+const paragraphNodes = document.getElementsByTagName("p");
+
+//for-of iteration over a collection
+for(let p of paragraphNodes) {
+    // assign each iterated paragraph to variable "p"
+    p.classList.add("paragraph-style");
+}

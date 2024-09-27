@@ -1,13 +1,32 @@
-const headerNode = document.getElementById("welcome-heading");
-headerNode.textContent = "JavaScript changed this";
-headerNode.className = "highlight";
+// Script for adding a greeting when the user types a name into the field and clicks a button
 
-function sayBreakfast(target) {
-    target.textContent = "sandwich"
+// print data about an event
+const printEventInfo = event => {
+    console.log(event);
 }
 
-// When we click on the header element, the node registers a "click" event
-// when that event is registered, the callback function argument is invoked
-headerNode.addEventListener("click", event => {
-    sayBreakfast(event.target);
+// Step 1: Select required elements
+// button that will be clicked
+const greetButtonNode = document.querySelector("#greet-button");
+// field that will contain the user's name
+const greetNameFieldNode = document.querySelector("#name-input");
+// paragraph that will have text added
+const greetingDisplayNode = document.querySelector("#greeting-display");
+
+// add a listener for when the button is clicked
+greetButtonNode.addEventListener("click", (event) => {
+    // get the value of the "name" field
+    const currentFieldValue = greetNameFieldNode.value;
+
+    // only update if a value has been typed
+    if(currentFieldValue.length > 0) {
+        // change the textContent of the greeting display using the name value
+        greetingDisplayNode.textContent = `Welcome to internet, ${currentFieldValue}!`;
+    
+        // clear the name field
+        greetNameFieldNode.value = "";
+    }
+
+    printEventInfo(event);
 });
+
